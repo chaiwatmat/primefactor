@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Chaiwatmat.PrimeFactor;
 
 namespace Chaiwatmat.PrimeFactor.Test
 {
-    [TestFixture]
     public class PrimeFactorTest
     {
         private PrimeFactor _primeFactor;
@@ -14,58 +13,63 @@ namespace Chaiwatmat.PrimeFactor.Test
             _primeFactor = new PrimeFactor();
         }
 
-        [TestCase(1)]
+        [Theory]
+        [InlineData(1)]
         public void GetPrimeFactorForNumber1_ShouldReturnEmpty(int number){
             var expected = new List<int>();
             var result = _primeFactor.GetPrimeList(number);
 
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestCase(2)]
-        [TestCase(3)]
-        [TestCase(5)]
-        [TestCase(7)]
-        [TestCase(11)]
-        [TestCase(13)]
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(5)]
+        [InlineData(7)]
+        [InlineData(11)]
+        [InlineData(13)]
         public void GetPrimeFactor_ShouldReturnValidPrimeList(int number){
             var expected = new List<int>{number};
             var result = _primeFactor.GetPrimeList(number);
 
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestCase(4)]
+        [Theory]
+        [InlineData(4)]
         public void GetPrimeFactorForNumber4_ShouldReturnValidPrimeList(int number){
             var expected = new List<int>{2, 2};
             var result = _primeFactor.GetPrimeList(number);
 
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestCase(6)]
+        [Theory]
+        [InlineData(6)]
         public void GetPrimeFactorForNumber6_ShouldReturnValidPrimeList(int number){
             var expected = new List<int>{2, 3};
             var result = _primeFactor.GetPrimeList(number);
 
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestCase(10)]
+        [Theory]
+        [InlineData(10)]
         public void GetPrimeFactorForNumber10_ShouldReturnValidPrimeList(int number){
             var expected = new List<int>{2, 5};
             var result = _primeFactor.GetPrimeList(number);
 
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestCase(50)]
+        [Theory]
+        [InlineData(50)]
         public void GetPrimeFactorForNumber50_ShouldReturnValidPrimeList(int number){
             var expected = new List<int>{2, 5, 5};
             var result = _primeFactor.GetPrimeList(number);
 
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
-
     }
 }
